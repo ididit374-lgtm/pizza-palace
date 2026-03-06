@@ -29,7 +29,7 @@
       <div class="controls">
         <a href="{% url 'remove_from_cart' item.pizza.id %}" class="btn">−</a>
         <span class="qty">{{ item.quantity }}</span>
-        <a href="{% url 'add_to_cart' item.pizza.id %}" class="btn">+</a>
+        <a href="{% url 'add_to_cart' item.pizza.id %}?next=/cart/" class="btn">+</a>
       </div>
     </div>
     {% endfor %}

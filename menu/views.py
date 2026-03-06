@@ -88,7 +88,9 @@ def add_to_cart(request, pizza_id):
     key = str(pizza_id)
     cart[key] = cart.get(key, 0) + 1
     request.session['cart'] = cart
-    return redirect('menu')
+    # Check where the request came from
+    next_url = request.GET.get('next', 'menu')
+    return redirect(next_url)
 
 def remove_from_cart(request, pizza_id):
     cart = request.session.get('cart', {})
