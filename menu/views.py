@@ -134,17 +134,17 @@ def process_payment(request, order_id):
 
 def gallery(request):
     images = [
-        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyyg8huJfraWl0KSeRKyA_Ly55O0f8leSQVA&s', 'title': 'Chicken Tikka Pizza'},
-        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGsO8_BXeu1PTx2mLrb7OPazuxz4hJp273FQ&s', 'title': 'Meat Pizza'},
-        {'url': 'https://i.pinimg.com/564x/99/6b/03/996b03f80216ead13fa85654c65466ff.jpg', 'title': 'Vegetarian Pizza'},
-        {'url': 'https://fivestarps.ca/wp-content/uploads/2025/01/WhatsApp-Image-2025-06-26-at-10.48.24-PM-1.jpeg', 'title': 'Special Pizza'},
-        {'url': 'https://www.sainsburysmagazine.co.uk/uploads/media/2400x1800/06/4846-SweetChocolatePizza1120.jpg?v=1-0', 'title': 'Sweet Chocolate Pizza'},
-        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnkP608AAqA2l0Bite6ZP_Mh7cSTD0pg9OLA&s', 'title': 'Pizza Special'},
-        {'url': 'https://www.myrelationshipwithfood.com/wp-content/uploads/2017/09/skillet.jpg', 'title': 'Skillet Pizza'},
-        {'url': 'https://rated.club/wp-content/uploads/2025/06/Dominos-Chicken-Kickers-review-8-1024x683.jpg', 'title': 'Chicken Kickers'},
-        {'url': 'https://tb-static.uber.com/prod/image-proc/processed_images/fb4349f2cf2649c65691b2c636629a63/c67fc65e9b4e16a553eb7574fba090f1.jpeg', 'title': 'Uber Eats Special'},
-        {'url': 'https://www.dominos.co.uk/blog/wp-content/uploads/2024/02/Dominos-Potato-Wedges-1.jpg', 'title': 'Potato Wedges'},
-        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN4Igx1QLGcFfv8-QRE1Ta-zevqtYo3fBGJA&s', 'title': 'Pizza Slice'},
-        {'url': 'https://www.fountain-filters.co.uk/blog-admin/app/web/upload/source/20_f19a419303daf9a702b5f8c113d4f117.webp', 'title': 'Fresh Pizza'},
+        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyyg8huJfraWl0KSeRKyA_Ly55O0f8leSQVA&s', 'title': 'Meat Pizza'},
+        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGsO8_BXeu1PTx2mLrb7OPazuxz4hJp273FQ&s', 'title': 'Vegetarian Pizza'},
+        {'url': 'https://i.pinimg.com/564x/99/6b/03/996b03f80216ead13fa85654c65466ff.jpg', 'title': 'Spicy Vegetarian Pizza'},
+        {'url': 'https://fivestarps.ca/wp-content/uploads/2025/01/WhatsApp-Image-2025-06-26-at-10.48.24-PM-1.jpeg', 'title': 'Kebab Pizza'},
+        {'url': 'https://www.sainsburysmagazine.co.uk/uploads/media/2400x1800/06/4846-SweetChocolatePizza1120.jpg?v=1-0', 'title': 'Pizza Chocolato'},
+        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnkP608AAqA2l0Bite6ZP_Mh7cSTD0pg9OLA&s', 'title': 'Specials Sweet Pizza'},
+        {'url': 'https://www.myrelationshipwithfood.com/wp-content/uploads/2017/09/skillet.jpg', 'title': 'choclate chop cookie ko'},
+        {'url': 'https://rated.club/wp-content/uploads/2025/06/Dominos-Chicken-Kickers-review-8-1024x683.jpg', 'title': 'Chicken Spicers with sauce'},
+        {'url': 'https://tb-static.uber.com/prod/image-proc/processed_images/fb4349f2cf2649c65691b2c636629a63/c67fc65e9b4e16a553eb7574fba090f1.jpeg', 'title': 'Chicken strips'},
+        {'url': 'https://www.dominos.co.uk/blog/wp-content/uploads/2024/02/Dominos-Potato-Wedges-1.jpg', 'title': 'Potato Wotatos'},
+        {'url': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN4Igx1QLGcFfv8-QRE1Ta-zevqtYo3fBGJA&s', 'title': 'Fanta Can'},
+        {'url': 'https://www.fountain-filters.co.uk/blog-admin/app/web/upload/source/20_f19a419303daf9a702b5f8c113d4f117.webp', 'title': 'Water'},
     ]
     return render(request, 'menu/gallery.html', {'images': images})
