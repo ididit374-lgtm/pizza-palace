@@ -19,7 +19,7 @@
   <div class="card">
     <h2 style="margin-top:0">Login</h2>
     {% if messages %}{% for msg in messages %}<div class="msg">{{ msg }}</div>{% endfor %}{% endif %}
-    <form method="post">
+    <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
       {% for field in form %}
         <label>{{ field.label }}</label>
