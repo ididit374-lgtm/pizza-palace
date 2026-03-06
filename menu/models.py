@@ -9,6 +9,10 @@ class Pizza(models.Model):
     size = models.CharField(max_length=1, choices=SIZES, default='M')
     image_url = models.URLField(blank=True)
     is_available = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+    
+ class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return f"{self.name} ({self.get_size_display()})"

@@ -25,6 +25,10 @@
         <label>{{ field.label }}</label>
         {{ field }}
       {% endfor %}
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
+  <input type="checkbox" name="remember_me" id="remember_me" style="width:18px; height:18px;">
+  <label for="remember_me" style="font-weight:normal; color:#666;">Remember me</label>
+</div>
       <button type="submit">Login</button>
     </form>
     <div class="link">Don't have an account? <a href="{% url 'register' %}">Register</a></div>

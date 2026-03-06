@@ -55,7 +55,12 @@ def login_view(request):
         form = EmailLoginForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
+            remember_me = request.POST.get('remember_me')
             login(request, user)
+            if not remember_me:
+                request.session.set_expiry(0)  # expires when browser closes
+            else:
+                request.session.set_expiry(1209600)  # 2 weeks
             return redirect(request.GET.get('next', 'menu'))
         else:
             messages.error(request, 'Invalid email or password.')
