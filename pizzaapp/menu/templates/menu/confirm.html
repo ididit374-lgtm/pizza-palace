@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Order Confirmed!</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 40px; background: #fff8f0; }
+  h1 { color: #27ae60; }
+  .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .total { font-size: 1.4em; font-weight: bold; color: #c0392b; margin-top: 16px; }
+  a { color: #c0392b; }
+</style>
+</head>
+<body>
+  <h1>✅ Order Confirmed!</h1>
+  <div class="card">
+    <p><strong>Name:</strong> {{ order.customer_name }}</p>
+    <p><strong>Order #:</strong> {{ order.id }}</p>
+    <p><strong>Status:</strong> {{ order.get_status_display }}</p>
+    <ul>
+      {% for item in items %}
+        <li>{{ item.pizza.name }} ({{ item.pizza.get_size_display }}) — ${{ item.pizza.price }}</li>
+      {% endfor %}
+    </ul>
+    <div class="total">Total: ${{ order.total }}</div>
+  </div>
+  <br><a href="{% url 'menu' %}">← Back to Menu</a>
+</body>
+</html>
