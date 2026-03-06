@@ -111,6 +111,7 @@
         <button type="submit" style="background:#c0392b; color:white; border:none; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; cursor:pointer; font-weight:bold;">Logout</button>
       </form>
     {% else %}
+    <a href="{% url 'gallery' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">Menu Images 😋🍽️</a>
       <a href="{% url 'login' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">🔐 Login</a>
       <a href="{% url 'register' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">✨ Register</a>
     {% endif %}
