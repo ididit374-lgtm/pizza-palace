@@ -1,0 +1,128 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>🍕 Pizza Palace</title>
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background-image: url("{% static 'menu/images/chatgpt-genrated-backgroundimage.png' %}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+        color: #c0392b;
+        text-align: center;
+        font-size: 2.5em;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .card {
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .card h3 {
+        color: #c0392b;
+        margin: 0 0 8px;
+      }
+      .price {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #27ae60;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+      }
+      .form-row {
+        margin: 20px 0;
+        display: flex;
+        gap: 12px;
+      }
+      input[type="text"],
+      input[type="email"] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 1em;
+      }
+      button {
+        background: #c0392b;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.1em;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #a93226;
+      }
+      .msg {
+        background: #ffe0e0;
+        padding: 10px;
+        border-radius: 8px;
+        color: #c0392b;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align:center; color:white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 3em; margin-bottom: 20px;">🍕 Pizza Palace</h1>
+  <div style="background: rgba(255,255,255,0.85); border-radius: 12px; padding: 20px;">
+    <div style="text-align:right; margin-bottom: 16px;">
+  {% if user.is_authenticated %}
+    <span style="font-family: Arial; font-weight:bold;">👤 {{ user.username }}</span> &nbsp;
+    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" style="background:#c0392b; color:white; border:none; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; cursor:pointer; font-weight:bold;">Logout</button>
+    </form>
+  {% else %}
+    <a href="{% url 'login' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none; margin-right:6px;">🔐 Login</a>
+    <a href="{% url 'register' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">✨ Register</a>
+  {% endif %}
+</div>
+    {% if messages %} {% for msg in messages %}
+    <div class="msg">{{ msg }}</div>
+    {% endfor %} {% endif %}
+    <form method="post" action="{% url 'place_order' %}">
+      {% csrf_token %}
+      <div class="grid">
+        {% for pizza in pizzas %}
+        <div class="card">
+          <label>
+            <input type="checkbox" name="pizzas" value="{{ pizza.id }}" />
+            <div>
+              {% if pizza.image_url %}
+              <img src="{{ pizza.image_url }}" style="width:50%; height: 200px; object-fit: cover; border-radius:8px; margin-bottom:8px;">
+              {% endif %}
+              <h3>{{ pizza.name }}</h3>
+              <p>{{ pizza.description }}</p>
+              <span class="price"
+                >${{ pizza.price }} · {{ pizza.get_size_display }}</span
+              >
+            </div>
+          </label>
+        </div>
+        {% endfor %}
+      </div>
+      <br />
+      <button type="submit">🛒 Place Order</button>
+    </form>
+  </div>
+  </body>
+</html>
