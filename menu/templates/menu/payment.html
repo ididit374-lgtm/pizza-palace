@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head><title>Payment – Pizza Palace</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  body { font-family: Arial, sans-serif; max-width: 500px; margin: 80px auto; padding: 20px; background: #fff8f0; }
+  h1 { color: #c0392b; text-align: center; }
+  .card { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  input { width: 100%; padding: 10px; margin: 8px 0 16px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 1em; }
+  button { width: 100%; background: #c0392b; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1.1em; cursor: pointer; font-weight: bold; }
+  button:hover { background: #a93226; }
+  label { font-weight: bold; font-size: 0.9em; color: #333; }
+  .payment-icons { display: flex; gap: 12px; margin-bottom: 20px; }
+  .pay-btn { flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: white; font-size: 1.5em; text-align: center; }
+  .pay-btn.active { border-color: #c0392b; }
+  .row { display: flex; gap: 12px; }
+  .row > div { flex: 1; }
+  .total { font-size: 1.2em; font-weight: bold; color: #27ae60; margin-bottom: 20px; text-align: center; }
+  a { color: #c0392b; }
+</style>
+</head>
+<body>
+  <h1>🍕 Pizza Palace</h1>
+  <div class="card">
+    <h2 style="margin-top:0">💳 Payment</h2>
+    <div class="total">Order Total: ${{ total }}</div>
+
+    <!-- Payment method selector -->
+    <p style="font-weight:bold; margin-bottom:8px;">Select Payment Method:</p>
+    <div class="payment-icons">
+      <button type="button" class="pay-btn active" onclick="selectPayment(this, 'card')">
+        <i class="fa-brands fa-cc-visa" style="color:#1a1f71;"></i> <i class="fa-brands fa-cc-mastercard" style="color:#eb001b;"></i>
+      </button>
+      <button type="button" class="pay-btn" onclick="selectPayment(this, 'bitcoin')">
+        <i class="fa-brands fa-bitcoin" style="color:#f7931a;"></i>
+      </button>
+    </div>
+
+    <form method="post" action="{% url 'process_payment' order_id %}">
+      {% csrf_token %}
+      <input type="hidden" name="payment_method" id="payment_method" value="card">
+
+      <!-- Card payment fields -->
+      <div id="card-fields">
+        <label>Cardholder Name</label>
+        <input type="text" placeholder="John Smith" value="John Smith">
+        <label>Card Number</label>
+        <input type="text" placeholder="4242 4242 4242 4242" maxlength="19" value="4242 4242 4242 4242">
+        <div class="row">
+          <div>
+            <label>Expiry Date</label>
+            <input type="text" placeholder="12/26" maxlength="5" value="12/26">
+          </div>
+          <div>
+            <label>CVV</label>
+            <input type="text" placeholder="123" maxlength="3" value="123">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bitcoin fields -->
+      <div id="bitcoin-fields" style="display:none;">
+        <label>Bitcoin Wallet Address</label>
+        <input type="text" placeholder="1A2b3C4d5E6f..." value="1FakeWalletAddressBitcoin123">
+        <p style="color:#888; font-size:0.85em;">Amount in BTC will be calculated at checkout.</p>
+      </div>
+
+      <button type="submit">✅ Pay Now</button>
+    </form>
+    <br>
+    <p style="text-align:center"><a href="{% url 'cart' %}">← Back to Cart</a></p>
+  </div>
+
+  <script>
+    function selectPayment(btn, method) {
+      document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('payment_method').value = method;
+      document.getElementById('card-fields').style.display = method === 'card' ? 'block' : 'none';
+      document.getElementById('bitcoin-fields').style.display = method === 'bitcoin' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>

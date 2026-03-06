@@ -121,5 +121,13 @@ def checkout(request):
         total += pizza.price * quantity
     order.total = total
     order.save()
-    request.session['cart'] = {}
-    return redirect('order_confirm', pk=order.pk)
+    return render(request, 'menu/payment.html', {'total': total, 'order_id': order.pk})
+
+def process_payment(request, order_id):
+    order = get_object_or_404(Order, pk=order_id)
+    if request.method == 'POST':
+        # Clear cart after payment
+        request.session['cart'] = {}
+        messages.success(request, '🎉 Payment successful! Your order is being prepared.')
+        return redirect('order_confirm', pk=order.pk)
+    return redirect('cart')
