@@ -1,16 +1,16 @@
 # 🍕 Pizza Palace
 
-![Pizza Palace](docs/images/Capture.JPG)
+![Pizza Palace]![alt text](pizzaapp/pizzaapp/docs/images/Capture.JPG)
 
                          PIZZA PALACE! Inspired by amazing coders who deserve a treat after Vscoding:
-![alt text](docs/images/pizza.gif)
+![alt text](pizzaapp/pizzaapp/docs/images/pizza.gif)
 
 Pizza Palace is a full-stack Django web application for ordering authentic Pakistani-inspired pizzas online. Users can browse the menu, add items to a shopping cart, complete a mock-up payment, and receive an order confirmation upon purchase. Built with Django 6, PostgreSQL (Neon), and deployed on Heroku.
 This project was developed with the support of AI tools for certain technical implementations that were beyond my current knowledge level — particularly around authentication, payment logic, and bug fixes. However, all architectural decisions were directed by me, the Django models and database relationships were written and managed by me, and all features were manually reviewed, tested, and understood before deployment. I followed Django terminal commands from the Code Institute LMS throughout, and where the walkthrough was unclear, I independently researched solutions — including how to create views, run commands, install packages, and resolve Heroku deployment errors.
 I was particularly careful with database security — ensuring an .env file and .gitignore were in place before any GitHub deployment to protect secret keys. Once the application was running and the model relationships were established, I logged into the Django admin interface as a superuser to populate the menu with text, images, prices, and descriptions across pizzas, drinks, sides, and desserts. The emoji-style buttons throughout the site were also a personal design choice to give the app a fun, welcoming feel.
 
 Below here was the infomration I pre-planned before procedding with getting the website created: 
-![alt text](docs/images/Pre-plan4websitepizzaapp.jpeg)
+![alt text](pizzaapp/pizzaapp/docs/images/Pre-plan4websitepizzaapp.jpeg)
 
 ![Python](https://img.shields.io/badge/Python-3.14-blue) ![Django](https://img.shields.io/badge/Django-6.0.3-green) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-blue) ![Heroku](https://img.shields.io/badge/Deployed-Heroku-purple) ![GitHub](https://img.shields.io/badge/Version_Control-GitHub-black)
 
@@ -205,13 +205,13 @@ The nav bar adapts based on login state.
 
 **Logged out:**
 
-![Navigation logged out](docs/images/Capture.JPG)
+![Navigation logged out](pizzaapp/pizzaapp/docs/images/Capture.JPG)
 
 Shows: **Menu Images 😋🍽️**, **🔐 Login**, **✨ Register**
 
 **Logged in:**
 
-![Navigation logged in](docs/images/Capture12.JPG)
+![Navigation logged in](pizzaapp/pizzaapp/docs/images/Capture12.JPG)
 
 Shows: **Menu Images 😋🍽️**, **👤 Username**, **🛒 Cart (n)**, **Logout**
 
@@ -221,13 +221,13 @@ Shows: **Menu Images 😋🍽️**, **👤 Username**, **🛒 Cart (n)**, **Logo
 
 **Accepted Payment Methods:**
 
-![Payment icons](docs/images/Capture3.JPG)
+![Payment icons](pizzaapp/pizzaapp/docs/images/Capture3.JPG)
 
 Visa, Mastercard and Bitcoin icons on a white pill background.
 
 **Social Media Links:**
 
-![Social media icons](docs/images/Capture2.JPG)
+![Social media icons](pizzaapp/pizzaapp/docs/images/Capture2.JPG)
 
 Fixed floating social buttons on the right side — Facebook, Instagram, Snapchat, YouTube, X, TikTok and WhatsApp. Each opens in a new tab.
 
@@ -235,26 +235,26 @@ Fixed floating social buttons on the right side — Facebook, Instagram, Snapcha
 
 ### Home Page
 
-![Home page](docs/images/Capture4.JPG)
+![Home page](pizzaapp/pizzaapp/docs/images/Capture4.JPG)
 
 - Full-screen background image
 - Pizza Palace logo and welcome intro
 - Navigation bar
 - Pizza cards with image, name, description, price, size and Add to Cart button
 
-![More menu items](docs/images/Capture5.JPG)
+![More menu items](pizzaapp/pizzaapp/docs/images/Capture5.JPG)
 
-![Side items](docs/images/Capture6.JPG)
+![Side items](pizzaapp/pizzaapp/docs/images/Capture6.JPG)
 
-![Bottom of menu with payment icons](docs/images/Capture7.JPG)
+![Bottom of menu with payment icons](pizzaapp/pizzaapp/docs/images/Capture7.JPG)
 
 ---
 
 ### Gallery Page
 
-![Gallery page](docs/images/Capture8.JPG)
+![Gallery page](pizzaapp/pizzaapp/docs/images/Capture8.JPG)
 
-![Gallery continued](docs/images/Capture9.JPG)
+![Gallery continued](pizzaapp/pizzaapp/docs/images/Capture9.JPG)
 
 - 3-column responsive grid of all menu images
 - Clicking any image opens a full-screen lightbox
@@ -264,9 +264,9 @@ Fixed floating social buttons on the right side — Facebook, Instagram, Snapcha
 
 ### Cart & Checkout
 
-![Cart page](docs/images/Capture13.JPG)
+![Cart page](pizzaapp/pizzaapp/docs/images/Capture13.JPG)
 
-![Cart total and place order](docs/images/Capture14.JPG)
+![Cart total and place order](pizzaapp/pizzaapp/docs/images/Capture14.JPG)
 
 - Lists each item with name, size, price per item and subtotal
 - **−** and **+** to adjust quantities
@@ -277,7 +277,7 @@ Fixed floating social buttons on the right side — Facebook, Instagram, Snapcha
 
 ### Payment Page
 
-![Payment page](docs/images/Capture15.JPG)
+![Payment page](pizzaapp/pizzaapp/docs/images/Capture15.JPG)
 
 - Displays order total
 - Two payment methods: **Visa/Mastercard** or **Bitcoin**
@@ -289,7 +289,7 @@ Fixed floating social buttons on the right side — Facebook, Instagram, Snapcha
 
 ### Order Confirmation
 
-![Order confirmation](docs/images/Capture16.JPG)
+![Order confirmation](pizzaapp/pizzaapp/docs/images/Capture16.JPG)
 
 - ✅ Order Confirmed heading
 - Customer name, order number, status
@@ -312,9 +312,9 @@ Fixed floating social buttons on the right side — Facebook, Instagram, Snapcha
 
 ### Authentication & Authorisation
 
-![Login page](docs/images/Capture10.JPG)
+![Login page](pizzaapp/pizzaapp/docs/images/Capture10.JPG)
 
-![Register page](docs/images/Capture11.JPG)
+![Register page](pizzaapp/pizzaapp/docs/images/Capture11.JPG)
 
 - **Register** — Username, email (required for password reset) and password
 - **Login** — Email address **or** username accepted
@@ -368,7 +368,7 @@ Lighthouse was run on the live Heroku site from Chrome DevTools.
 
 **Desktop — Home Page (Light Mode):**
 
-![Lighthouse Desktop Light](docs/images/Lighthouse_Test_Desktop.JPG)
+![Lighthouse Desktop Light](pizzaapp/pizzaapp/docs/images/Lighthouse_Test_Desktop.JPG)
 
 | Category | Score |
 |---|---|
@@ -379,7 +379,7 @@ Lighthouse was run on the live Heroku site from Chrome DevTools.
 
 **Desktop — Home Page (Dark Mode):**
 
-![Lighthouse Desktop Dark](docs/images/Lighthouse_Test_Desktop2.JPG)
+![Lighthouse Desktop Dark](pizzaapp/pizzaapp/docs/images/Lighthouse_Test_Desktop2.JPG)
 
 | Category | Score |
 |---|---|
@@ -392,17 +392,17 @@ Lighthouse was run on the live Heroku site from Chrome DevTools.
 
 **Browser Tab — Favicon:**
 
-![Favicon in browser tab](docs/images/Capture19.JPG)
+![Favicon in browser tab](pizzaapp/pizzaapp/docs/images/Capture19.JPG)
 
 The Pizza Palace favicon (🍕 pizza slice emoji) displays correctly in the browser tab alongside the page title.
 
 **Mobile — iPhone 12 Pro (390px):**
 
-![iPhone 12 Pro](docs/images/Capture18.JPG)
+![iPhone 12 Pro](pizzaapp/pizzaapp/docs/images/Capture18.JPG)
 
 **Tablet — iPad Pro (1024px):**
 
-![iPad Pro](docs/images/Capture17.JPG)
+![iPad Pro](pizzaapp/pizzaapp/docs/images/Capture17.JPG)
 
 ---
 
