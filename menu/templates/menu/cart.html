@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cart – Pizza Palace</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 700px; margin: 80px auto; padding: 20px; background: #fff8f0; }
+  h1 { color: #c0392b; text-align: center; }
+  .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+  .pizza-info { flex: 1; }
+  .pizza-info h3 { margin: 0 0 4px; color: #c0392b; }
+  .controls { display: flex; align-items: center; gap: 10px; }
+  .qty { font-size: 1.2em; font-weight: bold; min-width: 30px; text-align: center; }
+  .btn { background: #c0392b; color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 1em; text-decoration: none; }
+  .btn-green { background: #27ae60; }
+  .total { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: right; font-size: 1.3em; font-weight: bold; color: #c0392b; }
+  .empty { text-align: center; color: #888; font-size: 1.2em; padding: 40px; }
+  a { color: #c0392b; }
+</style>
+</head>
+<body>
+  <h1>🛒 Your Cart</h1>
+  {% if pizzas %}
+    {% for item in pizzas %}
+    <div class="card">
+      <div class="pizza-info">
+        <h3>{{ item.pizza.name }}</h3>
+        <p style="margin:0; color:#666;">{{ item.pizza.get_size_display }} · ${{ item.pizza.price }} each</p>
+        <p style="margin:4px 0 0; color:#27ae60; font-weight:bold;">Subtotal: ${{ item.subtotal }}</p>
+      </div>
+      <div class="controls">
+        <a href="{% url 'remove_from_cart' item.pizza.id %}" class="btn">−</a>
+        <span class="qty">{{ item.quantity }}</span>
+        <a href="{% url 'add_to_cart' item.pizza.id %}" class="btn">+</a>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="total">Total: ${{ total }}</div>
+    <br>
+    <a href="{% url 'checkout' %}" class="btn btn-green" style="display:block; text-align:center; padding:14px; font-size:1.1em; border-radius:8px;">✅ Place Order</a>
+    <br>
+    <p style="text-align:center"><a href="{% url 'menu' %}">← Back to Menu</a></p>
+  {% else %}
+    <div class="empty">
+      <p>🍕 Your cart is empty!</p>
+      <a href="{% url 'menu' %}">← Back to Menu</a>
+    </div>
+  {% endif %}
+</body>
+</html>

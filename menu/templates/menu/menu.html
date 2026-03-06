@@ -83,46 +83,41 @@
   </head>
   <body>
     <h1 style="text-align:center; color:white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 3em; margin-bottom: 20px;">🍕 Pizza Palace</h1>
-  <div style="background: rgba(255,255,255,0.85); border-radius: 12px; padding: 20px;">
-    <div style="text-align:right; margin-bottom: 16px;">
-  {% if user.is_authenticated %}
-    <span style="font-family: Arial; font-weight:bold;">👤 {{ user.username }}</span> &nbsp;
-    <form method="post" action="{% url 'logout' %}" style="display:inline;">
-      {% csrf_token %}
-      <button type="submit" style="background:#c0392b; color:white; border:none; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; cursor:pointer; font-weight:bold;">Logout</button>
-    </form>
-  {% else %}
-    <a href="{% url 'login' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none; margin-right:6px;">🔐 Login</a>
-    <a href="{% url 'register' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">✨ Register</a>
-  {% endif %}
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+  <div></div>
+  <div style="display:flex; align-items:center; gap:10px;">
+    {% if user.is_authenticated %}
+      <span style="font-family:Arial; font-weight:bold;">👤 {{ user.username }}</span>
+      <a href="{% url 'cart' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">
+        🛒 Cart ({{ request.session.cart|length|default:0 }})
+      </a>
+      <form method="post" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" style="background:#c0392b; color:white; border:none; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; cursor:pointer; font-weight:bold;">Logout</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">🔐 Login</a>
+      <a href="{% url 'register' %}" style="background:#c0392b; color:white; padding:8px 18px; border-radius:8px; font-size:0.95em; font-family:Arial; font-weight:bold; text-decoration:none;">✨ Register</a>
+    {% endif %}
+  </div>
 </div>
     {% if messages %} {% for msg in messages %}
     <div class="msg">{{ msg }}</div>
     {% endfor %} {% endif %}
-    <form method="post" action="{% url 'place_order' %}">
-      {% csrf_token %}
-      <div class="grid">
-        {% for pizza in pizzas %}
-        <div class="card">
-          <label>
-            <input type="checkbox" name="pizzas" value="{{ pizza.id }}" />
-            <div>
-              {% if pizza.image_url %}
-              <img src="{{ pizza.image_url }}" style="width:50%; height: 200px; object-fit: cover; border-radius:8px; margin-bottom:8px;">
-              {% endif %}
-              <h3>{{ pizza.name }}</h3>
-              <p>{{ pizza.description }}</p>
-              <span class="price"
-                >${{ pizza.price }} · {{ pizza.get_size_display }}</span
-              >
-            </div>
-          </label>
-        </div>
-        {% endfor %}
-      </div>
-      <br />
-      <button type="submit">🛒 Place Order</button>
-    </form>
+    <div class="grid">
+  {% for pizza in pizzas %}
+  <div class="card">
+    {% if pizza.image_url %}
+      <img src="{{ pizza.image_url }}" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:8px;">
+    {% endif %}
+    <h3>{{ pizza.name }}</h3>
+    <p>{{ pizza.description }}</p>
+    <span class="price">${{ pizza.price }} · {{ pizza.get_size_display }}</span>
+    <br><br>
+    <a href="{% url 'add_to_cart' pizza.id %}" style="background:#c0392b; color:white; padding:8px 14px; border-radius:8px; text-decoration:none; font-weight:bold; font-size:0.9em;">🛒 Add to Cart</a>
+  </div>
+  {% endfor %}
+</div>
   </div>
   </body>
 </html>
