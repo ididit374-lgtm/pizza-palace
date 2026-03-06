@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gallery – Pizza Palace</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-image: url("{% static 'menu/images/chatgpt-genrated-backgroundimage.png' %}");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .page-wrapper { max-width: 1000px; margin: auto; padding: 20px; }
+    h1 { color: white; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 2.5em; margin-bottom: 10px; }
+    .subtitle { text-align:center; color:white; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); margin-bottom: 24px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: scale(1.03); }
+    .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .card p { margin: 0; padding: 10px; font-weight: bold; color: #c0392b; text-align: center; }
+    .back-btn {
+      display: inline-block;
+      background: #c0392b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    /* Lightbox */
+    .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; }
+    .lightbox.active { display:flex; }
+    .lightbox img { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+    .lightbox-close { position:absolute; top:20px; right:30px; color:white; font-size:2.5em; cursor:pointer; }
+    .lightbox-title { position:absolute; bottom:30px; color:white; font-size:1.2em; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <h1>🍕 Pizza Palace</h1>
+    <p class="subtitle">😋 Our Delicious Menu Gallery 🍽️</p>
+    <a href="{% url 'menu' %}" class="back-btn">← Back to Menu</a>
+
+    <div class="grid">
+      {% for image in images %}
+      <div class="card" onclick="openLightbox('{{ image.url }}', '{{ image.title }}')">
+        <img src="{{ image.url }}" alt="{{ image.title }}" loading="lazy">
+        <p>{{ image.title }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+    <img id="lightbox-img" src="" alt="">
+    <p class="lightbox-title" id="lightbox-title"></p>
+  </div>
+
+  <script>
+    function openLightbox(url, title) {
+      document.getElementById('lightbox-img').src = url;
+      document.getElementById('lightbox-title').innerText = title;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
